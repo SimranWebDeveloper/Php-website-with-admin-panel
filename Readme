@@ -1,0 +1,5 @@
+code.php - yazilan html sehivelerinde (users.php, user-create.php, users-edit.php) dinamlik terefinin yazilmasi
+
+  config
+dbcon.php - database connectionun qurulmasi
+function.php  -databese atilan sorgularin yazilmasi ve yoxlanmasi

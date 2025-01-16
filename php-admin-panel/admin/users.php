@@ -39,8 +39,12 @@
                                     <td> <?= $userItem['is_ban']==1? "Banned":"Active" ?> </td> 
                                     <td> <?= $userItem['role']?> </td> 
                                     <td>
-                                    <a href="users-edit.php/id=<?= $userItem['id']?>" class="btn btn-success btn-sm">Edit</a>
-                                    <a href="users-delete.php/id=<?= $userItem['id']?>" class="btn btn-danger btn-sm">Delete</a>
+                                    <a href="users-edit.php?id=<?= $userItem['id']?>" class="btn btn-success btn-sm">Edit</a>
+                                    <a href="users-delete.php?id=<?= $userItem['id']?>" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Are you sure you want to  delete this data')"
+                                    >
+                                        Delete
+                                    </a>
                                 </tr>
                         </td>
                             <?php
