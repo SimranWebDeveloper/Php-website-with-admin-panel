@@ -1,6 +1,11 @@
 <?php 
 $pageTitle="Login";
-include('includes/header.php')
+include('includes/header.php');
+
+//eger bir defe login olubsa
+if (isset($_SESSION['auth'])) {
+    redirect('index.php',"You are already loggin");
+}
 ?>
 <div class="py-4 bg-secondary text-center">
     <h4 class="text-white">Login</h4>
@@ -15,6 +20,8 @@ include('includes/header.php')
                         <h4>Login</h4>
                     </div>
                     <div class="card-body">
+                        
+                        <?=alertMessage();  ?>
                         <form action="login-code.php" method="POST">
                             <div class="mb-3">
                                 <label >Email Adress</label>

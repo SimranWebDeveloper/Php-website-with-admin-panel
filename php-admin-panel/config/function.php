@@ -10,6 +10,12 @@ session_start();
         return trim($validateData);
     }
 
+    function logoutSession() {
+        unset($_SESSION['auth']);
+        unset($_SESSION['loggedInUserRole']);
+        unset($_SESSION['loggedInUser']);
+    }
+
     // bizi $url sehivesine gonderir ve $_SESSION statusuna $status yazir
     function redirect($url,$status)  {
         $_SESSION['status']=$status;
