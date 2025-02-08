@@ -27,7 +27,7 @@
                     if ($user['status']==200) {
                         ?>
                         
-                        <input type="hidden" value="<?= $user['data']['id'] ?>" type="text" name="userId" required>
+                        <input type="hidden" value="<?= $user['data']['id'] ?>" name="userId" >
 
                             <div class="row">
                                 <div class="col-md-6">

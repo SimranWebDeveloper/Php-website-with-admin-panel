@@ -18,7 +18,7 @@ if (is_numeric($paramResult)) {
             redirect('users.php',"User deleted Successfuly");
         }else{
             
-            redirect('users.php',"Something üent wrong");
+            redirect('users.php',"Something Went wrong");
         }
 
     }else{

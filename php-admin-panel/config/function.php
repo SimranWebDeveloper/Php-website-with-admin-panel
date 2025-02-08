@@ -44,7 +44,7 @@ session_start();
 
     
     
-    // update
+    // update ucun id-nin olub olmadigini yoxlayir
     function checkParamId($paramType) {
         
         if (isset($_GET[$paramType])) {
