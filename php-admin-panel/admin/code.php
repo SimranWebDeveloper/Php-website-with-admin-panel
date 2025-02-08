@@ -1,6 +1,7 @@
 <?php 
     require '../config/function.php';
 
+
     // create
     if (isset($_POST['saveUser'])) {
 
@@ -145,7 +146,6 @@
 
         if ($name !="" || $url !="") {
             $query="INSERT INTO social_medias (name,url,status) VALUES ('$name', '$url', '$status')";
-
             $result=mysqli_query($conn,$query);
             if ($result) {
                 redirect("social-media.php","Social Media Added Succesfully");
@@ -192,5 +192,77 @@
     
         }
         
+    }
+
+
+    // Services create
+    if (isset($_POST['saveServices'])) {
+        $name=validate($_POST['name']);
+        $slug=str_replace(' ','-',strtolower($name));
+
+        $small_description=validate($_POST['small_description']);
+        $long_description=validate($_POST['long_description']);
+
+        // $_FILES['image'] massivindəki size (ölçü) dəyəri 0-dan böyükdürsə, demək ki, istifadəçi bir fayl yükləyib. Əgər fayl yüklənməyibsə, bu blok işə düşməyəcək.
+        if ($_FILES['image']['size']>0) {
+
+            // Yüklənmiş faylın orijinal adı $image dəyişəninə təyin edilir.
+            $image=$_FILES['image']['name'];
+
+
+            // pathinfo() funksiyası fayl adından uzantını çıxarır (məsələn, "JPG", "JPEG" və ya "PNG").
+            // strtolower() funksiyası isə uzantını kiçik hərflərə çevirir 
+            $imageFileTypes=strtolower(pathinfo($image,PATHINFO_EXTENSION));
+
+            if($imageFileTypes!='jpg' && $imageFileTypes!='jpeg' && $imageFileTypes!='png'){
+                redirect("services.php","Sorry, JPG, JPEG, PNG images only");
+
+            }
+            $path="assets/uploads/services";
+
+            // Faylın uzantısını yenidən almaq:
+            $imgExt=pathinfo($image,PATHINFO_EXTENSION);
+
+            // Unikal fayl adı yaratmaq:
+            $filename=time().'.'.$imgExt;
+            //time() funksiyası cari Unix zaman damğasını qaytarır və bu, fayl adının unikal olmasına kömək edir.
+            // Nəticədə, timestamp.uzantı formatında yeni fayl adı yaradılır (məsələn, 1675876543.jpg).
+
+            $finalImage="assets/uploads/services".$filename;
+
+
+        }
+        else{
+            $finalImage=NULL;
+        }
+
+
+
+        $meta_title=validate($_POST['meta_title']);
+        $meta_description=validate($_POST['meta_description']);
+        $meta_keyword=validate($_POST['meta_keyword']);
+
+        $status=validate($_POST['status'])==true ? 1 : 0;
+
+        $query="INSERT INTO services(name,slug,small_description,long_description,image,meta_title,meta_description,meta_keyword,status) 
+        VALUES ('$name','$slug','$small_description','$long_description','$finalImage','$meta_title','$meta_description','$meta_keyword','$status')";
+
+        $result=mysqli_query($conn,$query);
+
+        if ($result) {
+            if ($_FILES['image']['size']>0) {
+                move_uploaded_file($_FILES['image']['tmp_name'],$path.$filename);
+            }
+            redirect("services.php","Service Added Succesfully");
+        }
+        else {
+            redirect('services-create.php',"Something Went Wrong");
+
+        }
+
+    }
+    else{
+        redirect('services-create.php',"Please fill the all the inputs!");
+
     }
 ?>
