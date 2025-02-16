@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-header">
             <h4>
-                Services
+                Add Services
                 <a href="services.php" class="btn btn-danger float-end">Back</a>
             </h4>
         </div>
