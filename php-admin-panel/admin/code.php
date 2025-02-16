@@ -236,9 +236,7 @@ if (isset($_POST['saveServices'])) {
     } else {
         redirect('services-create.php', "Something Went Wrong");
     }
-} else {
-    redirect('services-create.php', "Please fill the all the inputs!");
-}
+} 
 
 // Services update
 if (isset($_POST['updateService'])) {
@@ -263,9 +261,9 @@ if (isset($_POST['updateService'])) {
         if ($imageFileTypes != 'jpg' && $imageFileTypes != 'jpeg' && $imageFileTypes != 'png') {
             redirect("services.php", "Sorry, JPG, JPEG, PNG images only");
         }
-        $path = "assets/uploads/services";
+        $path = "assets/uploads/services/";
 
-        $deleteImage=$path.$service['data']['image'];
+        $deleteImage=$service['data']['image'];
 
         if (file_exists($deleteImage)){
             unlink($deleteImage);
@@ -275,7 +273,7 @@ if (isset($_POST['updateService'])) {
 
         $filename = time() . '.' . $imgExt;
 
-        $finalImage = "assets/uploads/services" . $filename;
+        $finalImage = "assets/uploads/services/" . $filename;
     } else {
         $finalImage = $service['data']['image'];
     }
@@ -302,6 +300,14 @@ if (isset($_POST['updateService'])) {
 
     $result = mysqli_query($conn, $query);
 
+    if ($result) {
+        if ($_FILES['image']['size'] > 0) {
+            move_uploaded_file($_FILES['image']['tmp_name'], $path . $filename);
+        }
+        redirect("services-edit.php?id=".$serviceId, "Service Updated Succesfully");
+    } else {
+        redirect('services-edit.php?id='.$serviceId, "Something Went Wrong");
+    }
 
     
 }
