@@ -58,6 +58,40 @@ $rowData=mysqli_fetch_assoc($result);
                 <p><?= $rowData['long_description'] ?></p>
             </div>
             </div>
+            <div class="col-md-4 " >
+                <div class="card sticky-top" style="top:120px; ">
+                    <div class="card-header bg-warning">
+                        <h4 class="text-white mb-0">Enquire Now</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="code.php" method="POST">
+                            <div class="mb-3">
+                                <label >Name</label>
+                                <input type="text" name="name" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label >Email</label>
+                                <input type="email" name="email" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label >Phone Number</label>
+                                <input type="number" name="phone" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label >Service</label>
+                                <input type="text" name="service" readonly value=" <?= $rowData['name'] ?>" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label >Message / Comment</label>
+                                <textarea name="message" id="" class="form-control" rows="3"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <button type="submit" name="enquireBtn" class="btn btn-primary w-100 ">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

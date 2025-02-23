@@ -34,7 +34,7 @@ include('includes/header.php')
                                             <h5><?=$row['name'] ?></h5>
                                             <p><?=$row['small_description'] ?></p>
                                             <div>
-                                                <a href="service.php?slug=<?=$row['slug']  ?>" class="text-primary">read more</a>
+                                                <a href="service.php?slug=<?=$row['slug']?>" class="text-primary">read more</a>
                                             </div>
                                         </div>
                                     </div>
