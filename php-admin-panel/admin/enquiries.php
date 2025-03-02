@@ -9,7 +9,7 @@
         </div>
         <div class="card-body">
             <?= alertMessage() ?>
-            <table class="table table-bordered table-striped    ">
+            <table id="myTable" class="table table-bordered table-striped    ">
                 <thead>
                     <tr>
                         <th>Id</th>
