@@ -240,6 +240,8 @@ if (isset($_POST['saveServices'])) {
 
 // Services update
 if (isset($_POST['updateService'])) {
+
+    // (serviceId,long_description,...) - Bunlar Services-edit.php sehivesindeki inputlari name-leridir
     $serviceId=validate($_POST['serviceId']);
 
     $name = validate($_POST['name']);
@@ -311,6 +313,34 @@ if (isset($_POST['updateService'])) {
 
     
 }
+
+
+// Enquiry update
+if (isset($_POST['updateEnquiryStatus'])) {
+    // (enquiryId,status,...) - Bunlar enquires-view.php sehivesindeki inputlari name-leridir
+    $enquiryId=validate($_POST['enquiryId']);
+    $status = validate($_POST['status']);
+
+
+
+
+    $enquires=getById('enquires',$enquiryId);
+
+
+    $query = "UPDATE enquires SET   status='$status' WHERE id='$enquiryId' LIMIT 1";
+
+    $result = mysqli_query($conn, $query);
+
+    if ($result) {
+        redirect("enquires-view.php?id=".$enquiryId, "Enquiries Status Updated Succesfully");
+    } else {
+        redirect('enquiries-view.php?id='.$enquiryId, "Something Went Wrong");
+    }
+
+    
+}
+
+
  
 
 
