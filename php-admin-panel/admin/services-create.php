@@ -23,7 +23,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="">Long Description</label>
-                    <textarea  name="long_description" required class="form-control"></textarea>
+                    <textarea  name="long_description" required class=" mySummernote form-control"></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="">Upload Image</label>

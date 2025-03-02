@@ -40,11 +40,11 @@
                             </div>
                             <div class="mb-3">
                                 <label for="">Long Description</label>
-                                <textarea  name="long_description" required class="form-control"><?=$service['data']['long_description'];?></textarea>
+                                <textarea  name="long_description" required class="form-control mySummernote"><?=$service['data']['long_description'];?></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="">Upload Image</label>
-                                <input type="file" name="image" required class="form-control"  />
+                                <input type="file" name="image"  class="form-control"  />
                                 <img src="<?=$service['data']['image'];?>"  alt="<?=$service['data']['name'];?>" style="width: 70px;height: 70px;">
                             </div>
 
@@ -55,7 +55,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="">Meta Description</label>
-                                <textarea  name="meta_description" required class="form-control"><?=$service['data']['meta_description'];?></textarea>
+                                <textarea  name="meta_description" required class="form-control "><?=$service['data']['meta_description'];?></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="">Meta Keyword</label>
