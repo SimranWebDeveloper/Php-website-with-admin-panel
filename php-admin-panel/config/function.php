@@ -129,4 +129,57 @@ session_start();
 
         return $result;
     }
+
+    // custom insert
+    function insert($tableName,$data) {
+        global $conn;
+
+        $table=validate($tableName);
+
+        $columns=array_keys($data);
+        $values=array_values($data);
+
+        // implode - arr-yin elementlerini vergulle birlesdirib bir string ifade emele getirir
+        // "','" menasi: Yeniki ',' isareleri her elementin arasinda qoysun
+        $finalColums=implode(',',$columns);                 // name,    phone,  email,          password,role,  is_ban
+        $finalValues="'". implode("','",$values) ."'";      //'Simran','12','   admin@mail.ru','$2y..','admin','1'
+
+      
+
+        $query = "INSERT INTO $table ($finalColums) VALUES ($finalValues)";
+        $result = mysqli_query($conn, $query);
+
+        return $result;
+
+
+    }
+    // custom update
+    function update($tableName,$id,$data) {
+        global $conn;
+
+        $table=validate($tableName);
+        $id=validate($id);
+
+        $updateColumnValuesDate="";  // name='admin kamu',phone='4444',email='admin@mail.ru',password='$2y...',role='admin',is_ban='0',
+        foreach($data as $column => $value){
+            $updateColumnValuesDate .= $column."="."'$value',";
+        }
+        //      substr($updateColumnValuesDate,0,-1);
+        // Bu ifade, bir stringin son karakterini silmek için kullanılır.
+        // substr(string, başlangıç, uzunluk) fonksiyonu belirtilen aralıktaki kısmı döndürür.
+
+         
+         $finalUpdateData=substr(trim( $updateColumnValuesDate),0,-1);
+
+        
+
+            $query = "UPDATE   $table SET  $finalUpdateData WHERE id='$id' LIMIT 1";
+
+
+        $result = mysqli_query($conn, $query);
+
+        return $result;
+
+
+    }
     ?>

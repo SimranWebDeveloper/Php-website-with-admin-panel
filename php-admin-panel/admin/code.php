@@ -10,23 +10,37 @@ if (isset($_POST['saveUser'])) {
     $email = validate($_POST['email']);
     $password = validate($_POST['password']);
     $role = validate($_POST['role']);
-    $is_ban = validate($_POST['is_ban']) == true ? 1 : 0;
-    echo $is_ban;
+    $is_ban = isset($_POST['is_ban']) == true ? 1 : 0;
+
 
 
     if ($name != "" || $phone != "" ||  $email != "" ||   $password != "") {
         
          $hashedPassword=password_hash($password,PASSWORD_BCRYPT);
 
-        $query = "INSERT INTO users (name,phone,email,password, is_ban,role) VALUES ('$name', '$phone', '$email', '$hashedPassword', $is_ban, '$role')";
+         $data=[
+            'name'=> $name,
+            'phone'=> $phone,
+            'email'=> $email,
+            'password'=> $hashedPassword,
+            'role'=> $role,
+            'is_ban'=> $is_ban,
+         ];
 
-        $result = mysqli_query($conn, $query);
+         $result=insert('users',$data);
+
+        // $query = "INSERT INTO users (name,phone,email,password, is_ban,role) VALUES ('$name', '$phone', '$email', '$hashedPassword', $is_ban, '$role')";
+
+        // $result = mysqli_query($conn, $query);
+
         if ($result) {
             redirect("users.php", "User/ Admin Added Succesfully");
-        } else {
+        } 
+        else {
             redirect('users-create.php', "Something Went Wrong");
         }
-    } else {
+    } 
+    else {
         redirect('users-create.php', "Please fill the all the inputs!");
     }
 }
@@ -39,7 +53,7 @@ if (isset($_POST['updateUser'])) {
     $email = validate($_POST['email']);
     $password = validate($_POST['password']);
     $role = validate($_POST['role']);
-    $is_ban = validate($_POST['is_ban']) == true ? 1 : 0;
+    $is_ban = isset($_POST['is_ban']) == true ? 1 : 0;
 
     $userId = validate($_POST['userId']);
 
@@ -55,23 +69,39 @@ if (isset($_POST['updateUser'])) {
 
         $hashedPassword=password_hash($password,PASSWORD_BCRYPT);
 
-        $query = "UPDATE   users SET 
-            name='$name',
-            phone='$phone',
-            email='$email',
-            password='$hashedPassword', 
-            is_ban='$is_ban',
-            role='$role'
-            WHERE id='$userId'
-            ";
+        $data=[
+            'name'=> $name,
+            'phone'=> $phone,
+            'email'=> $email,
+            'password'=> $hashedPassword,
+            'role'=> $role,
+            'is_ban'=> $is_ban,
+         ];
 
-        $result = mysqli_query($conn, $query);
+         // $query = "UPDATE   users SET 
+         //     name='$name',
+         //     phone='$phone',
+         //     email='$email',
+         //     password='$hashedPassword', 
+         //     is_ban='$is_ban',
+         //     role='$role'
+         //     WHERE id='$userId'
+         //     ";
+ 
+         // $result = mysqli_query($conn, $query);
+
+         
+         $result=update('users',$userId,$data);
+
+
         if ($result) {
             redirect('users-edit.php?id=' . $userId, "User/ Admin Updated Succesfully");
-        } else {
+        } 
+        else {
             redirect('users-create.php', "Something Went Wrong");
         }
-    } else {
+    } 
+    else {
         redirect('users-create.php', "Please fill the all the inputs!");
     }
 }
