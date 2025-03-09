@@ -11,7 +11,7 @@ require 'config/function.php';
     <meta name="description" content="<?= webSetting('meta_description') ?? "Meta Desc";?>">
     <meta name="keywords" content="<?= webSetting('meta_keyword') ?? "Meta Keyword";?>">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
 <body>

@@ -22,7 +22,7 @@ include('includes/header.php')
                         
                         foreach ($result as $row) {
                             ?>
-                                <div class="col-md-3 mb-3">
+                                <div class="col-md-4 mb-3">
                                     <div class="card shadow-sm">
                                         <?php if ($row['image'] !=''):?>
                                             <img src="admin/<?= $row['image'] ?>" class="w-100 rounded" alt="Img" style="min-height: 200px;max-height:200px;" />
