@@ -15,7 +15,10 @@ if (isset($_POST['saveUser'])) {
 
 
     if ($name != "" || $phone != "" ||  $email != "" ||   $password != "") {
-        $query = "INSERT INTO users (name,phone,email,password, is_ban,role) VALUES ('$name', '$phone', '$email', '$password', $is_ban, '$role')";
+        
+         $hashedPassword=password_hash($password,PASSWORD_BCRYPT);
+
+        $query = "INSERT INTO users (name,phone,email,password, is_ban,role) VALUES ('$name', '$phone', '$email', '$hashedPassword', $is_ban, '$role')";
 
         $result = mysqli_query($conn, $query);
         if ($result) {
@@ -49,11 +52,14 @@ if (isset($_POST['updateUser'])) {
     }
 
     if ($name != "" || $phone != "" ||  $email != "" ||   $password != "") {
+
+        $hashedPassword=password_hash($password,PASSWORD_BCRYPT);
+
         $query = "UPDATE   users SET 
             name='$name',
             phone='$phone',
             email='$email',
-            password='$password', 
+            password='$hashedPassword', 
             is_ban='$is_ban',
             role='$role'
             WHERE id='$userId'

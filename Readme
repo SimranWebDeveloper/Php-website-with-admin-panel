@@ -3,3 +3,7 @@ code.php - yazilan html sehivelerinde (users.php, user-create.php, users-edit.ph
   config
 dbcon.php - database connectionun qurulmasi
 function.php  -databese atilan sorgularin yazilmasi ve yoxlanmasi
+
+hashing - sifre acma
+hashed password - sifrelenmis parol
+hash parolun uzunluqu 60 karakter olur ona gorede DB-de min 60 karakter olmalidir(recommend 255)

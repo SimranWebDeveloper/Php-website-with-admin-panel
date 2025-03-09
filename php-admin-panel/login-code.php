@@ -9,13 +9,25 @@ require 'config/function.php';
         $email=filter_var($emailInput,FILTER_SANITIZE_EMAIL);
         $password=filter_var($passwordInput,FILTER_SANITIZE_STRING);
 
+
         if ($email!='' && $password!='') {
-            $query="SELECT * FROM users WHERE email='$email' && password='$password' LIMIT 1";
+            // $query="SELECT * FROM users WHERE email='$email' && password='$password' LIMIT 1";
+             $query="SELECT * FROM users WHERE email='$email'  LIMIT 1";
             $result=mysqli_query($conn,$query);
 
             if ($result) {
                 if (mysqli_num_rows($result)==1) {
                     $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
+
+                    // db-den gelen haslanmis parolu aliriq
+                    $hashedPassword=$row['password'];
+
+                    //eger  Girilen şifre ($password) ile hashlenmiş şifre ($hashedPassword) eşleşiyor mu?
+                    // Eşleşmiyorsa (yanlış şifre girildiyse) false onunda !false= "true" döner.
+                    if (!password_verify($password,$hashedPassword)) {
+                        redirect('login.php',"Invalid Password buradi");
+                    }
+
                     if ($row['role']=='admin') {
 
                         //eger banlanibsa (deyeri 1-dirse)
@@ -48,7 +60,7 @@ require 'config/function.php';
 
                 }else{
 
-                    redirect('login.php','Invalid email or password');
+                    redirect('login.php','Invalid email Id');
                 }
             }else{
                 redirect('login.php','Something went wrong');
