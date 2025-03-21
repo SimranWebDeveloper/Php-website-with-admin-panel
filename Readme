@@ -4,6 +4,18 @@ code.php - yazilan html sehivelerinde (users.php, user-create.php, users-edit.ph
 dbcon.php - database connectionun qurulmasi
 function.php  -databese atilan sorgularin yazilmasi ve yoxlanmasi
 
+
+Login
 hashing - sifre acma
 hashed password - sifrelenmis parol
 hash parolun uzunluqu 60 karakter olur ona gorede DB-de min 60 karakter olmalidir(recommend 255)
+authentication-da sadece olaraq sertler yoxlanir
+
+Mail gondermede
+3 mail yazilir
+1 mail -> $setUsername  -> "simran.abbasov.00@mail.ru"
+$setUsername: SMTP sunucusuna bağlanmak için kullandığın, hesabının kimlik bilgilerini temsil eden e-posta adresidir. Bu, Mail.ru hesabına giriş yaparken kullandığın adrestir.
+2 mail -> $sendEmailAdress ->"simran.abbasov.00@mail.ru";
+Gönderici (From) olarak e-postanın hangi adresten gönderildiğini belirler. Genellikle $setUsername ile aynı olur("RECOMMENDED"), çünkü SMTP kimlik bilgileri ile doğrulanan hesap genellikle gönderici adresi olarak kullanılır.
+3 mail -> $receiveEmailAdress ->"simran.abb@div.edu.az";
+$receiveEmailAdress → Gönderilen e-postayı alacak kişinin e-posta adresi.

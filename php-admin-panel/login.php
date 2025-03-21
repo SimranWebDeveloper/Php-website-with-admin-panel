@@ -20,7 +20,7 @@ if (isset($_SESSION['auth'])) {
                         <h4>Login</h4>
                     </div>
                     <div class="card-body">
-                        
+                        <!-- mesaji $_SESSION['status'] goturur -->
                         <?=alertMessage();  ?>
                         <form action="login-code.php" method="POST">
                             <div class="mb-3">

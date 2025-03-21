@@ -25,7 +25,7 @@ require 'config/function.php';
                     //eger  Girilen şifre ($password) ile hashlenmiş şifre ($hashedPassword) eşleşiyor mu?
                     // Eşleşmiyorsa (yanlış şifre girildiyse) false onunda !false= "true" döner.
                     if (!password_verify($password,$hashedPassword)) {
-                        redirect('login.php',"Invalid Password buradi");
+                        redirect('login.php',"Invalid Password ");
                     }
 
                     if ($row['role']=='admin') {

@@ -13,7 +13,36 @@ $pageTitle="About us";
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                Contact Form
+
+                <?=alertMessage();?>
+
+                <div class="card card-body">
+                    <form action="sendmail.php" method="POST">
+                        <div class="mb-3">
+                            <label >Name</label>
+                            <input type="text" name="name" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label >Email</label>
+                            <input type="email" name="email" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label >Phone Number</label>
+                            <input type="number" name="phone" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label >Service</label>
+                            <input type="text" name="service"  class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label >Message / Comment</label>
+                            <textarea name="message" id="" class="form-control" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" name="contactSubmit" class="btn btn-primary w-100 ">Submit</button>
+                        </div>
+                    </form>
+                </div>
             </div>
             <div class="col-md-6">
                 <h4 class="footer-heading">Contact Information</h4>
